@@ -1,0 +1,10 @@
+version: '3'
+services:
+    web0:
+        build: .
+        ports:
+            - "5000:5000"
+        restart: always
+        volumes:
+            - "./app:/app:ro"
+            - "./db:/db:rw"

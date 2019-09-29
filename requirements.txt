@@ -6,6 +6,5 @@ flask-mail
 flask-bootstrap
 bs4
 termcolor
-flask-mysqldb
 lxml
 requests

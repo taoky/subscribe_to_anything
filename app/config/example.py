@@ -1,8 +1,10 @@
-SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://sta:sta@localhost/sta?charset=utf8'
-DEBUG = True
-SECRET_KEY = 'secret-key'
+import os
 
-MAIL_ENABLE = True
+SQLALCHEMY_DATABASE_URI = 'sqlite:///db/db.db'
+DEBUG = True
+SECRET_KEY = os.urandom(2333)
+
+MAIL_ENABLE = False
 MAIL_SERVER = 'localhost'
 MAIL_PORT = 25
 MAIL_USE_TLS = False
