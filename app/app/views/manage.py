@@ -24,7 +24,11 @@ def index():
 @manage.route('/add/', methods=['POST', 'GET'])
 @login_required
 def add():
-    form = AddForm(request.form, Page('','','','','','','GET','change','','diff',10,None))
+    form = AddForm(method='GET', 
+                    watch_type='change', 
+                    notify_content='diff', 
+                    freq=10, 
+                    current_user=None)
     if request.method == 'POST':
         if form.validate_on_submit():
             page = Page(form['name'].data,
@@ -87,7 +91,8 @@ def test(id):
     if not page or page.user != current_user:
         return redirect(url_for('manage.index'))
     try:
-        text = download(page.url, page.ua, page.referer, page.cookie, page.method, page.postdata)
+        text = download(page.url, page.ua, page.referer,
+                        page.cookie, page.method, page.postdata)
     except Exception as e:
         text = type(e).__name__
     return render_template('test.html', text=text)
