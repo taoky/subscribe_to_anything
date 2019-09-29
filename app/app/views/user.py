@@ -28,46 +28,46 @@ def login():
     return render_template('login.html', form=form)
 
 
-@user.route('/register/', methods=['POST', 'GET'])
-def register():
-    form = RegisterForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            if User.exist_user(form['email'].data):
-                flash('user already exists', 'error')
-            else:
-                user = User.get_user_from_email(form['email'].data)
-                if not user:
-                    user = User(form['email'].data, form['password'].data)
-                code = str(randint(100000, 999999))
-                user.reg_token = code
-                user.save()
-                send_mail('Confirm code', code, form['email'].data)
-                return redirect(url_for('user.confirm'))
-        else:
-            flash('email not valid or password not match', 'error')
-    return render_template('register.html', form=form)
+# @user.route('/register/', methods=['POST', 'GET'])
+# def register():
+#     form = RegisterForm()
+#     if request.method == 'POST':
+#         if form.validate_on_submit():
+#             if User.exist_user(form['email'].data):
+#                 flash('user already exists', 'error')
+#             else:
+#                 user = User.get_user_from_email(form['email'].data)
+#                 if not user:
+#                     user = User(form['email'].data, form['password'].data)
+#                 code = str(randint(100000, 999999))
+#                 user.reg_token = code
+#                 user.save()
+#                 send_mail('Confirm code', code, form['email'].data)
+#                 return redirect(url_for('user.confirm'))
+#         else:
+#             flash('email not valid or password not match', 'error')
+#     return render_template('register.html', form=form)
 
 
-@user.route('/confirm/', methods=['POST', 'GET'])
-def confirm():
-    form = ConfirmForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            user = User.get_confirm_user(form['code'].data)
-            if user:
-                user.active = True
-                user.save()
-                login_user(user)
-                return redirect(url_for('home.index'))
-            else:
-                flash('wrong code', 'error')
-        else:
-            flash('please input confirm code', 'error')
-    return render_template('confirm.html', form=form)
+# @user.route('/confirm/', methods=['POST', 'GET'])
+# def confirm():
+#     form = ConfirmForm()
+#     if request.method == 'POST':
+#         if form.validate_on_submit():
+#             user = User.get_confirm_user(form['code'].data)
+#             if user:
+#                 user.active = True
+#                 user.save()
+#                 login_user(user)
+#                 return redirect(url_for('home.index'))
+#             else:
+#                 flash('wrong code', 'error')
+#         else:
+#             flash('please input confirm code', 'error')
+#     return render_template('confirm.html', form=form)
 
 
 @user.route('/logout/')
 def logout():
-    logout_user();
-    return redirect(url_for('home.index'));
+    logout_user()
+    return redirect(url_for('home.index'))

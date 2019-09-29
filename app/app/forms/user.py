@@ -9,14 +9,14 @@ class LoginForm(Form):
     submit_btn = SubmitField('Login')
 
 
-class RegisterForm(Form):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(),
-                                                     EqualTo('confirm_password', message='passwords must match')])
-    confirm_password = PasswordField('Confirm password')
-    submit_btn = SubmitField('Register')
+# class RegisterForm(Form):
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+#     password = PasswordField('Password', validators=[DataRequired(),
+#                                                      EqualTo('confirm_password', message='passwords must match')])
+#     confirm_password = PasswordField('Confirm password')
+#     submit_btn = SubmitField('Register')
 
 
-class ConfirmForm(Form):
-    code = StringField('Confirm code', validators=[DataRequired()])
-    submit_btn = SubmitField('Confirm')
+# class ConfirmForm(Form):
+#     code = StringField('Confirm code', validators=[DataRequired()])
+#     submit_btn = SubmitField('Confirm')
