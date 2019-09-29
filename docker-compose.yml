@@ -5,6 +5,8 @@ services:
         ports:
             - "5000:5000"
         restart: always
+        environment:
+            - PYTHONUNBUFFERED=1
         volumes:
             - "./app:/app:ro"
             - "./db:/db:rw"

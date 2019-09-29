@@ -1,10 +1,10 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, RadioField, IntegerField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, URL, NumberRange
 from app import app
 
 
-class AddForm(Form):
+class AddForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     url = StringField('URL', validators=[DataRequired(), URL()])
     ua = StringField('User Agent')
