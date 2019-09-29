@@ -65,7 +65,7 @@ def edit(id):
     page = Page.query.get(id)
     if not page or page.user != current_user:
         return redirect(url_for('manage.index'))
-    form = AddForm(request.form, page)
+    form = AddForm(obj=page)
     if request.method == 'POST':
         if form.validate_on_submit():
             page.name = form['name'].data
